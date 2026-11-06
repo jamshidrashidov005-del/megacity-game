@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#101b2b">
+<title>MEGACITY</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#101b2b;--panel:#1a2a40;--panel2:#223750;--line:#314963;--text:#f3f7fc;--muted:#a8b9cc;--blue:#35a7ff;--green:#3bd18b;--gold:#ffc857;--red:#ff6b6b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}button{font:inherit;color:inherit;border:0;cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}.app{max-width:760px;margin:auto;padding:14px 14px 92px}.top{display:flex;justify-content:space-between;align-items:center;margin:5px 0 14px}.brand{font-size:22px;font-weight:900;letter-spacing:1px}.brand span{color:var(--blue)}.day{color:var(--muted);font-size:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:10px}.stat small{display:block;color:var(--muted);font-size:11px}.stat b{font-size:16px}.city{margin-top:12px;background:linear-gradient(180deg,#244768,#17283c 72%);border:1px solid #385a78;border-radius:18px;padding:12px;overflow:hidden}.cityhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.cityhead strong{font-size:14px}.weather{font-size:12px;color:#d7e8f8}.skyline{height:126px;display:flex;align-items:end;justify-content:space-around;gap:6px;padding:0 5px;background:linear-gradient(#5aa8dc22,#101b2b00);border-bottom:5px solid #536c7d}.tower{width:16%;position:relative;background:linear-gradient(90deg,#213d58,#3b6687,#1c3650);border:1px solid #76b7e2;border-bottom:0;border-radius:4px 4px 0 0;display:flex;justify-content:center;align-items:start;padding-top:8px}.tower:before{content:"";position:absolute;inset:8px 5px;background:repeating-linear-gradient(90deg,#f9d77b 0 4px,transparent 4px 9px),repeating-linear-gradient(0deg,transparent 0 12px,#8cc8ef 12px 15px);opacity:.7}.t1{height:56px}.t2{height:91px}.t3{height:116px;width:20%}.t4{height:72px}.t5{height:46px}.street{height:30px;background:linear-gradient(#34485a,#17212c);display:flex;align-items:center;justify-content:space-around;color:#f7d77b;font-size:12px}.districts{display:flex;gap:7px;margin:12px 0;overflow:auto}.district{white-space:nowrap;background:var(--panel);border:1px solid var(--line);padding:9px 12px;border-radius:999px;font-size:12px}.district.active{background:#1767a6;border-color:#48b5ff}.section{margin-top:15px}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.sectionhead h3{font-size:15px;margin:0}.hint{font-size:11px;color:var(--muted)}.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;min-height:104px;text-align:left;display:flex;flex-direction:column;gap:5px}.tile .emoji{font-size:25px}.tile b{font-size:13px}.tile small{font-size:11px;color:var(--muted)}.tile .level{color:var(--gold)}.tile.empty{border-style:dashed;align-items:center;justify-content:center;text-align:center;color:var(--muted);background:#17263a}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.action{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 5px;font-size:12px}.action span{display:block;font-size:20px;margin-bottom:4px}.bars{display:grid;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}.barrow{display:grid;grid-template-columns:82px 1fr 38px;align-items:center;gap:8px;font-size:12px}.bar{height:8px;background:#0d1725;border-radius:10px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:10px}.barrow em{font-style:normal;text-align:right;color:var(--muted)}.bottom{position:fixed;bottom:0;left:0;right:0;background:#101b2bf2;border-top:1px solid var(--line);padding:9px max(14px,calc((100vw - 730px)/2)) calc(9px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);gap:7px;backdrop-filter:blur(12px)}.nav{background:transparent;color:var(--muted);font-size:11px;padding:5px}.nav b{display:block;font-size:19px;margin-bottom:2px}.nav.active{color:var(--blue)}.modalback{position:fixed;inset:0;background:#0009;display:none;align-items:end;justify-content:center;z-index:5}.modal{width:min(100%,760px);background:var(--panel);border:1px solid var(--line);border-radius:20px 20px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom));max-height:82vh;overflow:auto}.modal h3{margin:0 0 5px}.modal p{color:var(--muted);font-size:13px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.choice{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left}.choice b{display:block;font-size:13px}.choice small{color:var(--muted)}.primary{background:var(--blue);color:#061728;font-weight:800;padding:12px 16px;border-radius:12px;width:100%;margin-top:12px}.secondary{background:#34465b;padding:11px 15px;border-radius:12px;margin-top:8px;width:100%}.toast{position:fixed;top:14px;left:50%;transform:translate(-50%,-140%);background:#eaf5ff;color:#102236;padding:10px 16px;border-radius:12px;font-weight:700;font-size:13px;z-index:9;transition:.25s}.toast.show{transform:translate(-50%,0)}.mission{background:linear-gradient(110deg,#203e5d,#1a2a40);border:1px solid #42698b;border-radius:14px;padding:12px;font-size:13px}.mission button{float:right;background:#2d9be9;padding:7px 10px;border-radius:9px;font-size:11px;font-weight:700}.muted{color:var(--muted)}@media(min-width:600px){.tiles{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+ <header class="top"><div><div class="brand">MEGA<span>CITY</span></div><div class="day" id="day">1-KUN · YANGI SHAHAR</div></div><div class="day">🏙️ Shahar boshqaruvi</div></header>
+ <section class="stats">
+  <div class="stat"><small>💰 Byudjet</small><b id="money">₸ 12 000</b></div>
+  <div class="stat"><small>👥 Aholi</small><b id="people">120</b></div>
+  <div class="stat"><small>📈 Kunlik foyda</small><b id="profit">+₸ 450</b></div>
+ </section>
+ <section class="city">
+  <div class="cityhead"><strong id="districtTitle">Markaziy tuman</strong><span class="weather">☀️ Ochiq havo</span></div>
+  <div class="skyline"><div class="tower t1"></div><div class="tower t2"></div><div class="tower t3"></div><div class="tower t4"></div><div class="tower t5"></div></div>
+  <div class="street"><span>🚗</span><span>━━ ━━ ━━</span><span>🚌</span><span>━━ ━━ ━━</span><span>🚙</span></div>
+ </section>
+ <div class="districts" id="districts"></div>
+ <section class="section"><div class="sectionhead"><h3>🏗️ Shahar hududi</h3><span class="hint">Bo‘sh joyni tanlang</span></div><div class="tiles" id="tiles"></div></section>
+ <section class="section"><div class="sectionhead"><h3>📊 Shahar holati</h3><span class="hint" id="mood">Barqaror</span></div><div class="bars">
+  <div class="barrow"><span>⚡ Elektr</span><div class="bar"><i id="powerbar" style="width:70%"></i></div><em id="powerval">70%</em></div>
+  <div class="barrow"><span>💧 Suv</span><div class="bar"><i id="waterbar" style="width:70%"></i></div><em id="waterval">70%</em></div>
+  <div class="barrow"><span>😊 Baxt</span><div class="bar"><i id="happybar" style="width:75%"></i></div><em id="happyval">75%</em></div>
+ </div></section>
+ <section class="section"><div class="sectionhead"><h3>🎯 Bugungi vazifa</h3><span class="hint">Mukofot: ₸ 1 000</span></div><div class="mission"><button onclick="claimMission()">Mukofotni olish</button><b>3 ta bino qur</b><br><span class="muted" id="missionProgress">0 / 3 ta bino qurildi</span></div></section>
+ <section class="section"><div class="sectionhead"><h3>⚡ Tezkor boshqaruv</h3></div><div class="actions">
+  <button class="action" onclick="openBuild()"><span>🏗️</span>Qurilish</button><button class="action" onclick="collect()"><span>💰</span>Daromad</button><button class="action" onclick="nextDay()"><span>🌅</span>Keyingi kun</button>
+ </div></section>
+</div>
+<nav class="bottom"><button class="nav active" onclick="tab('city',this)"><b>🏙️</b>Shahar</button><button class="nav" onclick="openBuild()"><b>🏗️</b>Qurilish</button><button class="nav" onclick="showStats()"><b>📊</b>Statistika</button><button class="nav" onclick="showSettings()"><b>⚙️</b>Sozlama</button></nav>
+<div class="modalback" id="modalback" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div><div class="toast" id="toast"></div>
+<script>
+const tg=window.Telegram?.WebApp; if(tg){tg.ready();tg.expand();tg.setHeaderColor('#101b2b');tg.setBackgroundColor('#101b2b')}
+const types={
+ home:{name:'Turar joy',icon:'🏠',cost:1800,income:90,people:45,desc:'Aholi yashaydi'},
+ shop:{name:'Do‘kon',icon:'🏪',cost:2400,income:260,people:8,desc:'Savdo va daromad'},
+ factory:{name:'Zavod',icon:'🏭',cost:4200,income:520,people:25,desc:'Ish o‘rinlari va ishlab chiqarish'},
+ park:{name:'Park',icon:'🌳',cost:1300,income:-30,people:0,desc:'Shahar baxtini oshiradi'},
+ office:{name:'Ofis',icon:'🏢',cost:3500,income:390,people:18,desc:'Biznes markazi'},
+ hospital:{name:'Shifoxona',icon:'🏥',cost:3800,income:-90,people:0,desc:'Aholi salomatligi'},
+ school:{name:'Maktab',icon:'🏫',cost:3000,income:-60,people:0,desc:'Ta’lim sifati'},
+ police:{name:'Politsiya',icon:'🚓',cost:2600,income:-45,people:0,desc:'Xavfsizlik'},
+ fire:{name:'Yong‘in xizmati',icon:'🚒',cost:2300,income:-40,people:0,desc:'Favqulodda himoya'},
+ power:{name:'Elektr stansiya',icon:'⚡',cost:3200,income:-80,people:0,desc:'Elektr ta’minoti'},
+ water:{name:'Suv inshooti',icon:'💧',cost:2800,income:-65,people:0,desc:'Suv ta’minoti'}
+};
+const initial={money:12000,day:1,district:0,districts:[{name:'Markaziy tuman',unlocked:true,slots:Array(8).fill(null)},{name:'Yangi shahar',unlocked:false,slots:Array(8).fill(null)},{name:'Sanoat zonasi',unlocked:false,slots:Array(8).fill(null)}],built:0,claimed:false,happy:75,tax:10};
+let state;try{state=JSON.parse(localStorage.getItem('megacity_save'))||structuredClone(initial)}catch(e){state=JSON.parse(JSON.stringify(initial))}
+function save(){localStorage.setItem('megacity_save',JSON.stringify(state))}
+function fmt(n){return '₸ '+Math.round(n).toLocaleString('en-US').replace(/,/g,' ')}
+function allBuildings(){return state.districts.flatMap(d=>d.slots.filter(Boolean))}
+function total(key){return allBuildings().reduce((s,b)=>s+(types[b.type]?.[key]||0)*(1+(b.level-1)*.5),0)}
+function people(){return 120+total('people')}
+function power(){let b=allBuildings();let supply=b.filter(x=>x.type==='power').length*100;let demand=b.length*5+30;return Math.min(100,Math.round((supply+70)/demand*70))}
+function water(){let b=allBuildings();let supply=b.filter(x=>x.type==='water').length*100;let demand=b.length*5+30;return Math.min(100,Math.round((supply+70)/demand*70))}
+function daily(){return Math.round(total('income')+people()*state.tax*.15)}
+function render(){
+ document.getElementById('money').textContent=fmt(state.money);document.getElementById('people').textContent=people().toLocaleString('en-US');document.getElementById('profit').textContent=(daily()>=0?'+':'')+fmt(daily());document.getElementById('day').textContent=state.day+'-KUN · YANGI SHAHAR';
+ document.getElementById('districtTitle').textContent=state.districts[state.district].name;
+ document.getElementById('districts').innerHTML=state.districts.map((d,i)=>`<button class="district ${i===state.district?'active':''}" onclick="selectDistrict(${i})">${d.unlocked?'📍':'🔒'} ${d.name}</button>`).join('');
+ const slots=state.districts[state.district].slots;document.getElementById('tiles').innerHTML=slots.map((b,i)=>b?`<button class="tile" onclick="manage(${i})"><span class="emoji">${types[b.type].icon}</span><b>${types[b.type].name}</b><small class="level">⭐ ${b.level}-daraja</small><small>Kuniga ${fmt(Math.round(types[b.type].income*(1+(b.level-1)*.5)))}</small></button>`:`<button class="tile empty" onclick="buildAt(${i})"><span class="emoji">＋</span><b>Bo‘sh yer</b><small>Qurilish uchun bosing</small></button>`).join('');
+ let p=power(),w=water(),h=Math.max(25,Math.min(100,state.happy+Math.floor((p+w-140)/10)+(allBuildings().some(b=>b.type==='park')?5:0)));state.happy=h;
+ [['power',p],['water',w],['happy',h]].forEach(([k,v])=>{document.getElementById(k+'bar').style.width=v+'%';document.getElementById(k+'val').textContent=v+'%'});
+ document.getElementById('mood').textContent=h>80?'A’lo':h>60?'Yaxshi':h>40?'E’tibor kerak':'Og‘ir';document.getElementById('missionProgress').textContent=Math.min(3,state.built)+' / 3 ta bino qurildi';save();
+}
+function toast(t){let el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1900);if(tg)tg.HapticFeedback?.notificationOccurred('success')}
+function openModal(html){document.getElementById('modal').innerHTML=html;document.getElementById('modalback').style.display='flex'}
+function closeModal(){document.getElementById('modalback').style.display='none'}
+function selectDistrict(i){if(!state.districts[i].unlocked){let cost=9000+i*3000;openModal(`<h3>🔓 ${state.districts[i].name}</h3><p>Yangi hududni ochish narxi: ${fmt(cost)}.</p><button class="primary" onclick="unlock(${i},${cost})">Hududni ochish</button><button class="secondary" onclick="closeModal()">Bekor qilish</button>`);return}state.district=i;render()}
+function unlock(i,c){if(state.money<c){toast('Mablag‘ yetarli emas');return}state.money-=c;state.districts[i].unlocked=true;state.district=i;closeModal();render();toast('Yangi hudud ochildi!')}
+function buildAt(i){openBuild(i)}
+function openBuild(slot){let s=slot===undefined?null:slot;openModal(`<h3>🏗️ Qurilish menyusi</h3><p>Shahringiz uchun bino tanlang. Qurilish narxi byudjetdan yechiladi.</p><div class="choices">${Object.entries(types).map(([k,v])=>`<button class="choice" onclick="build('${k}',${s===null?-1:s})"><b>${v.icon} ${v.name}</b><small>${fmt(v.cost)} · ${v.desc}</small></button>`).join('')}</div><button class="secondary" onclick="closeModal()">Yopish</button>`)}
+function build(k,slot){let slots=state.districts[state.district].slots;let i=slot<0?slots.findIndex(x=>!x):slot;if(i<0||slots[i]){toast('Bo‘sh yer yo‘q');return}let cost=types[k].cost;if(state.money<cost){toast('Mablag‘ yetarli emas');return}state.money-=cost;slots[i]={type:k,level:1};state.built++;closeModal();render();toast(types[k].name+' qurildi!')}
+function manage(i){let b=state.districts[state.district].slots[i],t=types[b.type],upgrade=Math.round(t.cost*(.65+b.level*.35));openModal(`<h3>${t.icon} ${t.name}</h3><p>${t.desc}. Hozirgi daraja: ${b.level}. Kunlik daromad: ${fmt(t.income*(1+(b.level-1)*.5))}.</p><button class="primary" ${b.level>=3?'disabled':''} onclick="upgradeBuilding(${i},${upgrade})">⬆️ Rivojlantirish · ${fmt(upgrade)}</button><button class="secondary" onclick="closeModal()">Yopish</button>`)}
+function upgradeBuilding(i,c){let b=state.districts[state.district].slots[i];if(b.level>=3)return;if(state.money<c){toast('Mablag‘ yetarli emas');return}state.money-=c;b.level++;closeModal();render();toast('Bino rivojlantirildi!')}
+function collect(){let n=daily();state.money+=n;render();toast('Kunlik hisob: '+(n>=0?'+':'')+fmt(n))}
+function nextDay(){let n=daily();state.money+=n;state.day++;state.happy=Math.max(25,Math.min(100,state.happy+(power()>60?1:-2)+(water()>60?1:-2)));render();toast('Yangi kun boshlandi! '+(n>=0?'+':'')+fmt(n))}
+function claimMission(){if(state.claimed){toast('Mukofot allaqachon olingan');return}if(state.built<3){toast('Avval 3 ta bino quring');return}state.money+=1000;state.claimed=true;render();toast('Mukofot olindi: '+fmt(1000))}
+function showStats(){openModal(`<h3>📊 Shahar statistikasi</h3><p>Kun: ${state.day}<br>Aholi: ${people()}<br>Binolar: ${allBuildings().length}<br>Kunlik daromad: ${fmt(daily())}<br>Baxtiyorlik: ${state.happy}%<br>Ochiq hududlar: ${state.districts.filter(d=>d.unlocked).length}/3</p><button class="secondary" onclick="closeModal()">Yopish</button>`)}
+function showSettings(){openModal(`<h3>⚙️ Sozlamalar</h3><p>Soliq stavkasi: ${state.tax}%</p><input id="tax" type="range" min="5" max="20" value="${state.tax}" style="width:100%" oninput="document.getElementById('taxv').textContent=this.value+'%'"><b id="taxv">${state.tax}%</b><button class="primary" onclick="state.tax=+document.getElementById('tax').value;closeModal();render();toast('Soliq yangilandi')">Saqlash</button><button class="secondary" onclick="if(confirm('Barcha o‘yin ma’lumotlari o‘chirilsinmi?')){localStorage.removeItem('megacity_save');location.reload()}">O‘yinni boshidan boshlash</button>`)}
+function tab(name,el){document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+render();
+</script>
+</body>
+</html>
